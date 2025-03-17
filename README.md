@@ -21,9 +21,9 @@ Este repositorio contiene el desarrollo del proyecto de programación en ensambl
 
   CDV25.ens/ → Código fuente en ensamblador.
 
-  memoria.pdf/ → Documentación del proyecto y enunciado original.
+  memoria.pdf/ → Documentación del proyecto y casos de prueba propios.
 
-  ResultadosCorreciones/ → Resultados de los casos de prueba para verificar el correcto funcionamiento de las subrutinas.
+  ResultadosCorreciones/ → Resultados de los casos de prueba proporcionados por el corrector para verificar el correcto funcionamiento de las subrutinas.
 
 
 
