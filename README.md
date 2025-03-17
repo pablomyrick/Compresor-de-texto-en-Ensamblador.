@@ -1,3 +1,11 @@
+![⚠️ ADVERTENCIA: USO EDUCATIVO ÚNICAMENTE ⚠️](https://img.shields.io/badge/⚠️-No_Plagiar-red)
+
+Este código fue desarrollado para un trabajo universitario y **NO debe ser copiado ni utilizado con fines académicos sin autorización**.  
+
+El plagio de este código puede tener consecuencias académicas graves.  
+
+
+
 # Compresor-de-texto-en-Ensamblador.
 📌 Proyecto de Programación en Ensamblador – Compresión de Texto
 
