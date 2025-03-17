@@ -5,42 +5,45 @@ Este repositorio contiene el desarrollo del proyecto de programación en ensambl
 
 🔹 Características del proyecto:
 
-      ✔️ Implementación de subrutinas para la compresión y descompresión de texto.
+  ✔️ Implementación de subrutinas para la compresión y descompresión de texto.
 
-      ✔️ Uso de estructuras de memoria para almacenar los datos comprimidos.
+  ✔️ Uso de estructuras de memoria para almacenar los datos comprimidos.
 
-      ✔️ Aplicación de técnicas de optimización en ensamblador.
+  ✔️ Aplicación de técnicas de optimización en ensamblador.
 
-      ✔️ Ejecución en un emulador del procesador 88110, sin interacción con periféricos.
+  ✔️ Ejecución en un emulador del procesador 88110, sin interacción con periféricos.
+
 
 
 📂 Estructura del Repositorio:
 
-CDV25.ens/ → Código fuente en ensamblador.
+  CDV25.ens/ → Código fuente en ensamblador.
 
-memoria.pdf/ → Documentación del proyecto y enunciado original.
+  memoria.pdf/ → Documentación del proyecto y enunciado original.
 
-ResultadosCorreciones/ → Resultados de los casos de prueba para verificar el correcto funcionamiento de las subrutinas.
+  ResultadosCorreciones/ → Resultados de los casos de prueba para verificar el correcto funcionamiento de las subrutinas.
+
 
 
 🚀 Cómo compilar y ejecutar el programa en el emulador MC88110
 
-1️⃣ Compilar el código ensamblador
+  1️⃣ Compilar el código ensamblador
 
-Ejecuta el ensamblador con el siguiente comando:
+  Ejecuta el ensamblador con el siguiente comando:
 
       88110e -e 0 -ml -o programa.bin programa.ens
 
 
-Explicación de los parámetros:
+  Explicación de los parámetros:
 
--e 0 → Define la dirección de entrada del programa en 0.
+   -e 0 → Define la dirección de entrada del programa en 0.
 
--ml → Usa ordenamiento de bytes en Little Endian.
+   -ml → Usa ordenamiento de bytes en Little Endian.
 
--o programa.bin → Nombre del archivo de salida con el código máquina.
+   -o programa.bin → Nombre del archivo de salida con el código máquina.
 
-programa.ens → Nombre del archivo ensamblador.
+   programa.ens → Nombre del archivo ensamblador.
+
 
 
 2️⃣ Cargar y ejecutar el programa en el emulador
@@ -49,23 +52,26 @@ programa.ens → Nombre del archivo ensamblador.
 
 Interacción con el emulador:
 
-e → Ejecutar el programa completo.
+  e → Ejecutar el programa completo.
 
-t → Ejecutar paso a paso (modo traza).
+  t → Ejecutar paso a paso (modo traza).
 
-p + <dirección> → Establecer un punto de interrupción en una dirección específica.
+  p + <dirección> → Establecer un punto de interrupción en una dirección específica.
 
-d <dirección> → Desensamblar instrucciones en memoria.
+  d <dirección> → Desensamblar instrucciones en memoria.
 
-v <dirección> → Ver contenido de memoria.
+  v <dirección> → Ver contenido de memoria.
+
 
 
 3️⃣ Depuración y seguimiento
+
 Para ejecutar en modo traza y analizar el estado de los registros después de cada instrucción:
 
       t
       
       r
+      
 Para visualizar los datos en memoria después de la ejecución:
 
       v 1000
