@@ -1,4 +1,6 @@
-# Compresor-de-texto-en-Ensamblador.
+LEER LICENSE
+
+# Compresor de texto en Ensamblador.
 📌 Proyecto de Programación en Ensamblador – Compresión de Texto
 
 Este repositorio contiene el desarrollo del proyecto de programación en ensamblador para la asignatura Estructura de Computadores. El objetivo principal es implementar un algoritmo de compresión y descompresión de texto sin pérdida de información, utilizando ensamblador para el procesador Motorola 88110.
