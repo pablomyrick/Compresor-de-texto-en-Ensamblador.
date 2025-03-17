@@ -5,13 +5,13 @@ Este repositorio contiene el desarrollo del proyecto de programación en ensambl
 
 🔹 Características del proyecto:
 
-✔️ Implementación de subrutinas para la compresión y descompresión de texto.
+      ✔️ Implementación de subrutinas para la compresión y descompresión de texto.
 
-✔️ Uso de estructuras de memoria para almacenar los datos comprimidos.
+      ✔️ Uso de estructuras de memoria para almacenar los datos comprimidos.
 
-✔️ Aplicación de técnicas de optimización en ensamblador.
+      ✔️ Aplicación de técnicas de optimización en ensamblador.
 
-✔️ Ejecución en un emulador del procesador 88110, sin interacción con periféricos.
+      ✔️ Ejecución en un emulador del procesador 88110, sin interacción con periféricos.
 
 
 📂 Estructura del Repositorio:
