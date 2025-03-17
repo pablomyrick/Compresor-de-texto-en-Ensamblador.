@@ -1,0 +1,628 @@
+org 0x20
+LEA:        MACRO(ra, eti)
+            or    ra, r0, low(eti)
+            or.u  ra, ra, high(eti)
+            ENDMACRO
+
+LOAD:       MACRO(ra, eti)
+            LEA(ra, eti)
+            ld    ra, ra, r0
+            ENDMACRO
+
+DBNZ:       MACRO(ra, eti)
+            subu  ra, ra, 1
+            cmp   r6, ra, r0
+            bb1   eq, r6, eti
+            ENDMACRO
+                
+
+PUSH:       MACRO(ra)
+            subu  r30, r30, 4
+            st    ra, r30, 0
+            ENDMACRO
+
+POP:        MACRO(ra)
+            ld    ra, r30, 0
+            addu  r30, r30, 4
+            ENDMACRO
+
+;/***********************************PROGRAMA PRINCIPAL***********************************/
+
+org 0x100
+cadena:     data "tres tristes tigres comen trigo en un trigal, el primer tigre que...\0"
+;cadena:      data "0123456789\0"
+long1:       data 0x500
+long2:       data 0x504
+
+org 0x3000
+ppal:       or    r30, r30, 0x5000
+            or    r31, r30, r30
+
+            LEA(r10, cadena)
+            LOAD(r11, long1)
+            LOAD(r12, long2)
+
+            PUSH(r12)
+            PUSH(r11)
+            PUSH(r10)
+
+            bsr   Verifica
+            addu  r30, r30, 12
+
+            stop
+
+
+
+
+LongCad:  PUSH(r1)
+          PUSH(r31)
+          or      r31, r30, 0
+          xor     r29, r29, r29                 ; inicializamos r29 a 0
+          ld      r20, r31, 8                   ; cargamos en r20 la dirección de la cadena
+          or      r2, r0, 0                     ; inicializamos a 0 el registro r2, para contar la longitud de la cadena
+BUCLC:    ld.b    r21, r20, 0                   ; para visualizar el carácter
+          cmp     r6, r21, r0                   ; buscamos el caracter terminador 0x00
+          bb1     eq, r6, FINLC
+          addu    r2, r2, 1                     ; si no ha terminado la cadena, incrementamos r2
+          addu    r20, r20, 1                   ; incrementamos el puntero de la cadena
+          br      BUCLC
+FINLC:    addu    r29, r29, r2                  ; ponemos el resultado en r29
+          POP(r31)
+          POP(r1)
+          jmp(r1)
+
+
+
+
+BuscaCar:   PUSH(r1)
+            PUSH(r31)
+            or      r31, r30, 0
+            xor     r29, r29, r29               ; inicializamos r29 a 0
+            ld      r3, r31, 8                  ; cargamos en r3 el carácter a buscar 
+            ld      r20, r31, 12                ; cargamos en r20 la dirección de la cadena
+            ld      r4, r31, 16                 ; cargamos en r4 el desplazamiento desde el inicio
+            ld      r5, r31, 20                 ; cargamos en r5 el desplazamiento hasta el final
+            addu    r21, r20, r5                ; la posición del final de la búsqueda
+            addu    r20, r20, r4                ; la posición inicial de la búsqueda
+            addu    r29, r29, r4  
+BucBC:      cmp     r6, r20, r21                ; comprueba si hemos llegado al final de la búsqueda
+            bb1     eq, r6, FinBC
+            ld.bu   r10, r20, 0                 ; cargamos en r10 el carácter correspondiente
+            cmp     r6, r3, r10                 ; comprueba si es el carácter que buscamos
+            bb1     eq, r6, FinBC
+            addu    r29, r29, 1                 ; incrementamos el contador
+            addu    r20, r20, 1                 ; incrementamos el puntero
+            br      BucBC
+FinBC:      POP(r31)
+            POP(r1)
+            jmp(r1)
+
+
+
+
+CoincidenCad:
+            PUSH(r1)
+            PUSH(r31)
+            or      r31, r30, 0
+            ld      r20, r31, 8                 ; puntero a la cadena 1
+            ld      r21, r31, 12                ; puntero a la cadena 2
+            xor     r29, r29, r29               ; inicializamos r29 a 0
+BucCC:      ld.b    r2, r20, 0                  ; carácter de la cadena 1
+            cmp     r6, r2, r0
+            bb1     eq, r6, FinCC
+            ld.b    r3, r21, 0                  ; carácter de la cadena 2
+            cmp     r6, r3, r0
+            bb1     eq, r6, FinCC
+            cmp     r6, r2, r3
+            bb0     eq, r6, FinCC
+            addu    r29, r29, 1                 ; incrementamos el contador
+            addu    r20, r20, 1                 ; avanzamos
+            addu    r21, r21, 1                 ; los punteros
+            br      BucCC
+FinCC:      POP(r31)
+            POP(r1)
+            jmp(r1)
+
+
+PoneBitA1:  PUSH(r1)
+            PUSH(r31)
+            or      r31, r30, 0
+            ld      r20, r31, 8                 ; r20 -> dirección de comienzo del campo de bits
+            ld      r2, r31, 12                 ; r2 -> valor NumBit
+            divu    r3, r2, 8                   ; dividimos NumBit / 8, para obtener los  bytes que tenemos que avanzar
+            ld.bu   r15, r20, r3                ; r15 -> byte en el que hay que cambiar el bit
+            mulu    r6, r3, 8                   ; bytes avanzados * 8
+            subu    r5, r2, r6                  ;  numBit - (posmem * 8)
+            or      r8, r0, 7
+            subu    r4, r8, r5                  ; 7 - (numBit - (posmem * 8)) ---> la posicion del bit a cambiar, para introducir en el set
+            xor     r9, r9, r9                  ; inicializamos r9 a 0, registro que vamos a usar para la instrucción set
+            addu    r9, r9, 32                  ; 00000000 00000000 00000000 00100000
+            addu    r9, r9, r4                  ; 00000000 00000000 00000000 001(desplazamiento)
+            set     r15, r15, r9
+            st.b    r15, r20, r3                ; colocamos el byte con el bit a 1 en su sitio
+            POP(r31)
+            POP(r1)
+            jmp(r1)
+
+  
+
+LeeBit:   PUSH(r1)
+          PUSH(r31)
+          or      r31, r30, r0
+          ld      r20, r31, 8                   ; r20 -> dirección del campo de bits
+          ld      r2, r31, 12                   ; r2 -> numBit (valor)
+          divu    r3, r2, 8                     ; dividimos NumBit / 8, para obtener los bytes que tenemos que avanzar -> r3
+          ld.bu   r15, r20, r3                  ; r15 -> byte en el que hay que cambiar el bit
+          mulu    r6, r3, 8                     ; bytes avanzados * 8
+          subu    r5, r2, r6                    ; numBit - (posmem * 8)
+          or      r8, r0, 7
+          subu    r4, r8, r5                    ; 7 - (numBit - (posmem * 8))
+          rot     r15, r15, r4                  ; rotamos hacia la derecha para dejar el bit en cuestión en la posición más a la derecha
+          or      r16, r0, 1
+          and     r29, r15, r16
+          POP(r31)
+          POP(r1)
+          jmp(r1)
+
+
+Comprime:   PUSH(r1)
+            PUSH(r31)
+            or      r31, r30, 0
+            ld      r20, r31, 8                 ; r20 -> dirección de 'texto'
+            PUSH(r20)                           ; metemos r20 en la pila
+            bsr    LongCad                      ; llamamos a la subrutina LongCad
+            POP(r20)
+            xor      r27, r27, r27              ; r27 -> contador para recorrer 'texto'
+            subu     r30, r30, 12               ; reservamos espacio para variables locales
+            st       r0, r30, 8 
+            st       r0, r30, 4
+            st       r0, r30, 0                 ; contador de bytes de 'comprdo'
+            mulu     r2, r29, 4
+            subu     r30, r30, r2
+            subu     r30, r30, 4
+            addu     r28, r30, 4
+            st       r28, r30, 0                ; guardamos el puntero 
+            ld       r10, r20, r0
+            st       r10, r28, r0
+            addu     r28, r28, 4
+            ld       r10, r20, 4
+            st       r10, r28, r0
+            addu     r28, r28, 4
+            st       r28, r30, r0               ; r28 -> puntero de zonaPila3
+            addu     r27, r27, 8                ; incrementamos los punteros de 'texto' y 'pilaZona3' 
+            ; ahora vamos a empezar con el bucle
+            ld       r22, r31, 12
+            addu     r22, r22, 5
+bucC:       or       r5, r0, 0x7
+            ld       r3, r31, -8                ; cargamos nBit 
+            and      r6, r3, r5
+            cmp      r6, r6, 0
+            bb1      eq, r6, InicializarA0C
+sig1C:      subu     r30, r30, 4                ; guardamos espacio para variable local de salida
+            or       r13, r0, 0x50
+            st       r13, r30, 0
+            PUSH(r27)
+            PUSH(r20)
+            bsr BuscaMax
+            POP(r20)
+            POP(r27)
+            POP(r11) 
+            or      r4, r0, 4
+            cmp     r6, r29, r4
+            bb1     hs, r6, mayorC   
+menorC:     ld      r28, r30, 0
+            ld.bu   r10, r20, r27
+            st.b    r10, r28, r0
+            addu    r28, r28, 1
+            addu    r27, r27, 1
+            st      r28, r30, 0
+            st      r27, r31, -4
+            ld      r3, r31, -8
+            addu    r3, r3, 1
+            st      r3, r31, -8
+            ld      r13, r31, -12
+            addu    r13, r13, 1
+            st      r13, r31, -12
+            br      comprobC
+mayorC:     PUSH(r29)                           ; guardamos L
+            PUSH(r11)                           ; guardamos P
+            ld      r3, r31, -8
+            PUSH(r3)
+            ld      r22, r31, 12                ; r22 -> dirección de comprdo
+            addu    r22, r22, 5                 ; dejamos espacio para la cabecera
+            PUSH(r22)
+            bsr PoneBitA1         
+            addu    r30, r30, 8
+            POP(r11)  ; P
+            POP(r29)  ; L
+            ld      r28, r30, r0
+            ld      r11, r11, r0
+            st.b    r11, r28, r0
+            ; hemos introducir el primer byte, ahora vamos a por el segundo
+            rot     r11, r11, <8>
+            st.b    r11, r28, 1
+            addu    r28, r28, 2
+            st.b    r29, r28, r0
+            addu    r28, r28, 1
+            st      r28, r30, r0
+            ld      r27, r31, -4
+            addu    r27, r27, r29
+            st      r27, r31, -4
+            ld      r3, r31, -8
+            addu    r3, r3, 1
+            st      r3, r31, -8
+            ld      r13, r31, -12
+            addu    r13, r13, 3
+            st      r13, r31, -12
+comprobC:   ld      r27, r31, -4
+            ld      r20, r31, 8
+            ld.bu   r10, r20, r27
+            cmp     r6, r10, r0
+            bb1     eq, r6, finTextoC
+            br bucC
+
+finTextoC:  ;st.b    r0, r28, 0    
+            ld      r13, r31, -12                       
+            addu    r13, r13, 1
+            st      r13, r31, -12
+            addu   r28, r28, 1
+            st      r28, r30, 0
+            ld      r20, r31, 8                 ; r20 -> dirección de 'texto'
+            PUSH(r20)                           ; metemos r20 en la pila
+            bsr    LongCad                      ; llamamos a la subrutina LongCad
+            POP(r20)
+            ld      r22, r31, 12                ; dirección de 'comprdo'
+            st.h    r29, r22, r0
+            or      r2, r0, 0x1
+            st.b    r2, r22, 2
+            ld      r3, r31, -8
+            divu    r4, r3, 8
+            mulu    r5, r4, 8
+            cmp     r6, r5, r3
+            bb1     eq, r6, seguirC
+            addu    r4, r4, 1
+seguirC:    addu    r4, r4, 5           
+            st.b    r4, r22, 3
+            subu    r30, r30, 4
+            or      r5, r0, 0xFF
+            st.b    r5, r30, 3
+            st.b    r5, r30, 2
+            st.b    r5, r30, 1
+            st.b    r0, r30, 0
+            ld      r7, r30, 0
+            addu    r30, r30, 4
+            and     r5, r7, r4
+            cmp     r6, r5, 0
+            bb1     eq, r6, noMasD
+            rot     r7, r4, <8>
+noMasD:     st.b    r7, r22, 4       
+            addu    r22, r22, r4
+            or      r28, r30, r0
+            addu    r28, r28, 4
+            ld      r13, r31, -12
+            addu    r13, r13, 8
+            ld      r21, r31, 12
+            ld.bu   r29, r21, 3         ; cargamos nº de bytes de la cabecera + nº bytes del mapa de bits
+buc2C:      ld.bu   r10, r28, r0
+            st.b    r10, r22, r0
+            addu    r22, r22, 1
+            addu    r28, r28, 1
+            DBNZ(r13, finC)
+            addu    r29, r29, 1
+            br      buc2C
+
+finC:       addu    r30, r30, 16                ; recuperamos
+            or      r30, r31, r0
+            POP(r31)
+            POP(r1)
+            jmp(r1)
+
+InicializarA0C:
+            
+            divu    r4, r3, 8
+            st.b    r0, r22, r4                 ; ponemos 0x00 en el byte correspondiente
+            br      sig1C
+
+
+
+
+
+
+
+
+
+Descomprime:
+                PUSH(r1)
+                PUSH(r31)
+                or      r31, r30, r0
+
+                ld      r20, r31, 8             ; r20 -> dirección del texto comprimido
+                ld      r21, r31, 12            ; r21 -> dirección del texto resultado
+                xor     r2, r2, r2              ; r2 contador para com
+                xor     r3, r3, r3              ; r3 contador desc
+                xor     r4, r4, r4              ; r4 contador para mapa de bits
+                subu    r30, r30, 12
+                st      r2, r30, 8              ; guardamos
+                st      r3, r30, 4              ; los
+                st      r4, r30, 0              ; contadores
+                ld.bu   r15, r20, 3             ; bytes de la cabecera + mapa de bits                
+                or      r23, r20, r0
+                addu    r23, r23, r15           ; dirección de comienzo del texto comprimido
+                subu    r30, r30, 4
+                st      r23, r30, 0
+
+                ld.bu   r8, r20, 2 
+                mulu    r8, r8, 8 
+copiarD:        ld.bu   r10, r23, r2
+                st.b    r10, r21, r3
+                addu    r2, r2, 1
+                addu    r3, r3, 1 
+                DBNZ(r8, bucD)
+                br copiarD
+
+                
+bucD:           ld.bu   r10, r23, r2
+                PUSH(r2)
+                PUSH(r3)                        ; guardamos los punteros
+                PUSH(r4)                        ; metemos numBit
+                ld      r23, r31, 8
+                addu    r23, r23, 5
+                PUSH(r23)                       ; metemos la dirección del mapa de bits
+                bsr LeeBit
+                addu    r30, r30, 4
+                POP(r4)
+                POP(r3)
+                POP(r2)
+                cmp     r6, r29, r0
+                bb1     eq, r6, esCeroD
+
+esUnoD:         ld      r23, r30, 0
+                ld.bu   r10, r23, r2
+                addu    r2, r2, 1
+                ld.bu   r11, r23, r2               
+                rot     r11, r11, <23>
+                addu    r11, r11, r10   ; P
+                addu    r2, r2, 1
+                ld.bu   r12, r23, r2    ; L
+                addu    r2, r2, 1
+                ld      r21, r31, 12
+esUnoBucD:      ld.bu   r10, r21, r11
+                st.b    r10, r21, r3
+                addu    r3, r3, 1
+                addu    r11, r11, 1
+                DBNZ(r12, sigD)
+                br esUnoBucD
+
+sigD:           ld      r4, r30, 4
+                addu    r4, r4, 1
+                st      r4, r30, 4
+                br bucD
+
+esCeroD:        ld      r23, r30, 0                     ; cargamos la dirección de texto compr
+                ld.bu   r10, r23, r2
+                cmp     r6, r10, r0            
+                bb1     eq, r6, finTextoD
+                ld      r21, r31, 12
+                st.b      r10, r21, r3
+                addu    r2, r2, 1
+                addu    r3, r3, 1
+                addu    r4, r4, 1
+                st      r2, r31, -4
+                st      r3, r31, -8
+                st      r4, r31, -12
+                
+                br bucD
+                
+finTextoD:      ld      r21, r31, 12
+                st.b    r0, r21, r3
+                PUSH(r21)
+                bsr LongCad
+                or      r30, r31, r0
+                POP(r31)
+                POP(r1)
+                jmp(r1)
+
+
+
+
+
+
+
+
+
+
+Verifica:       PUSH(r1)
+                PUSH(r31)
+                or      r31, r30, r0
+
+                ld      r20, r31, 8             ; r20 -> dirección del texto
+                PUSH(r20)
+                bsr     LongCad
+                POP(r20)
+                ld      r21, r31, 12            ; r21 -> dirección en la que devolver long1
+                st      r29, r21, 0             ; devolvemos en long1
+                or      r5, r0, 5               ; nº bytes de la cabecera
+                divu    r24, r29, 8
+                mulu    r25, r24, 8
+                cmp     r6, r25, r29
+                bb1     eq, r6, seguir
+                addu    r24, r24, 1
+seguir:         addu    r5, r5, r24             ; nº bytes de la cabecera + nº bytes del mapa de bits
+                addu    r5, r5, r29             ; nº bytes de la cabecera + nº bytes del mapa de bits + nº bytes del texto en el peor caso de compresión
+                or      r7, r0, 3
+                and     r8, r5, r7
+                cmp     r6, r8, r0
+                bb1     eq, r6, seg
+                or      r4, r0, 4
+                subu    r4, r4, r8
+                addu    r5, r5, r4
+                ; este es el numero de bytes que ocupa la cadena comprimida en el peor caso 
+seg:            subu    r30, r30, r5            ; reservamos la memoria
+                or      r25, r30, r0            ; r25 -> zona pila texto comprimido
+                divu    r4, r29, 4
+                mulu    r5, r4, 4
+                cmp     r6, r5, r4
+                bb1     eq, r6, cont
+                or      r7, r0, 3
+                or      r4, r0, 4
+                and     r3, r29, r7
+                subu    r7, r4, r3
+                addu    r28, r29, r7
+cont:           subu    r30, r30, r28           ; reservamos memoria
+                subu    r30, r30, 4             ; también reservamos memoria para el terminador
+                or      r26, r30, r0            ; r26 -> zona pila texto descomprimido
+                PUSH(r29)                       ; guardamos r29, la longitud del texto
+                PUSH(r26)
+                ; llamamos a Comprime
+                PUSH(r25)
+                PUSH(r20)
+                bsr     Comprime
+                POP(r20)
+                POP(r25)
+                POP(r26)
+                ; llamamos a Descomprime
+                PUSH(r26)
+                PUSH(r25)
+                bsr     Descomprime
+                POP(r25)
+                POP(r26)
+                ; calculamos la longitud del texto descomprimido
+                PUSH(r26)
+                bsr     LongCad
+                POP(r26)
+                POP(r28)
+                ld      r21, r31, 16
+                st      r29, r21, 0            ; devolvemos long2
+                cmp     r6, r29, r28
+                bb0     eq, r6, ldif
+                PUSH(r29)
+                PUSH(r26)
+                ld      r20, r31, 8             ; r20 -> dirección del texto
+                PUSH(r20)
+                bsr     CoincidenCad
+                POP(r20)
+                POP(r26)
+                POP(r28)
+                cmp     r6, r28, r29
+                bb0     eq, r6, noCoincD
+                or      r29, r0, r0
+                or      r30, r31, r0
+                POP(r31)
+                POP(r1)
+                jmp(r1)
+
+noCoincD:       or      r29, r0, 0
+                subu    r29, r29, 2
+                or      r30, r31, r0
+                POP(r31)
+                POP(r1)
+                jmp(r1)
+
+ldif:           or      r29, r0, 0
+                subu    r29, r29, 1
+                or      r30, r31, r0
+                POP(r31)
+                POP(r1)
+                jmp(r1)
+
+
+
+;
+; Debe incorporar este fichero con TODAS sus l�neas, sin modificar
+; ninguna de ellas, al final de su archivo CDV24.ens
+;
+; Este aviso se refiere tambi�n a las l�neas de comentario
+; 
+;
+;; Grupo:    220247 - Mon Oct 28 20:36:11 CET 2024
+
+BuscaMax:
+	PUSH (r1)
+	PUSH (r31)
+	or   r31, r30, 0
+	or   r28, r0, 0x3261
+	PUSH (r28)
+
+	ld   r10, r31, 8;  REF
+	ld   r11, r31, 12; MAX
+	ld   r12, r31, 16; Dir(JJ)
+
+	sub  r5, r0, 1		; guarda -1 en *JJ por si no se
+	st   r5, r12, 0		; encuentran coincidencias
+
+	addu r27, r0, r0  ; P
+	addu r28, r0, r0  ; L
+
+BucBM:
+	ld.bu r20, r10, r11	; C=REF(max)
+
+				; Reserva registros que
+				; necesita conservar
+	PUSH (r28) 	    	; L
+	PUSH (r11)	    	; MAX
+
+	     		    	; Par�metros de BuscaCar
+	PUSH (r27)	    	; P
+	PUSH (r10)	    	; REF
+	PUSH (r20)	   	; C
+	bsr  BuscaCar
+	POP  (r20)
+	POP  (r10)
+	POP  (r27)
+
+	POP  (r11)		; Recupera registros
+	POP  (r28)	        ; salvaguardados
+
+	cmp  r5, r29, r11	; nuevo P es >= MAX ??
+	bb1  hs, r5, finBM
+	addu r27, r29, r0	; P = nuevo P
+	
+	addu r13, r10, r27	; *REF(P)
+	addu r14, r10, r11 	; *REF(max)	
+
+	PUSH (r11)     		; Reserva registros que
+	PUSH (r10)		; necesita conservar
+	PUSH (r28)
+	PUSH (r27)
+	
+	PUSH (r14)		; Par�metros de CoincidenCad
+	PUSH (r13)
+	bsr  CoincidenCad
+	POP  (r13)
+	POP  (r14)
+	
+	POP  (r27)		; Recupera registros
+	POP  (r28)		; salvaguardados
+	POP  (r10)
+	POP  (r11)
+
+	cmp r5, r29, r28	; Comprueba si longitud > L
+	bb1 le, r5, contBM	; Si no lo es, contin�a
+	cmp r5, r29, 255	; Comprueba si longitud > 255
+	bb1 le, r5, noLimBM	; Si no lo es, contin�a
+	addu r29, r0, 255	; Si lo es, limita su valor a 255
+	
+noLimBM:
+	addu r28, r29, r0	; actualiza L
+	ld   r12, r31, 16	; Dir(JJ)
+	st   r27, r12, r0	; actualiza P en *JJ
+	bb1 ge, r5, finBM	; Si coincidencia >= 255 termina
+contBM: 
+	addu r27, r27, 1	; Pasa al siguiente car�cter
+	cmp  r5, r27, r11	; Es P>=max ?
+	bb1  hs, r5, finBM
+	
+	br   BucBM   		; Nueva b�squeda del primer car�cter
+
+finBM:
+	addu r29, r28, r0	; asigna L al valor de retorno r29
+	  
+	or   r27, r0, 0x5AB
+	POP  (r28)
+
+	or   r30, r31, 0
+	POP  (r31)
+	POP  (r1)
+	jmp  (r1)
+;; Grupo:    220247
+

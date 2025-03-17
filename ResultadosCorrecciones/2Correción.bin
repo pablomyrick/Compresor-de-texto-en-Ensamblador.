@@ -1,0 +1,311 @@
+Fecha: 14/11/24     21:23
+
+
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'PoneBitA1' varias veces, pas�ndole un mapa de bits
+de tres Bytes que parte de algunos bits a 0 y otros a 1. Todos
+los registros parten de valores iniciales distintos de cero
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'PoneBitA1' varias veces consecutivas, pas�ndole un
+mapa de bits formado por 36 Bytes con una mezcla de bits a uno
+y a cero y pone a uno diferentes bits de esos bytes; los
+registros parten de valores iniciales distintos de cero. Todos
+los registros parten de valores iniciales distintos de cero
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pas�ndole una cadena de 20 caracteres que
+no admite compresi�n
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Comprime', pas�ndole una cadena de 10 caracteres que
+no admite compresi�n.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pas�ndole una cadena de 32 caracteres que
+admite la m�xima compresi�n
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pas�ndole una cadena de caracteres igual
+a la del ejemplo detallado en la presentaci�n del proyecto (N=4)
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pas�ndole una cadena de caracteres igual
+a la del ejemplo detallado en la presentaci�n del proyecto (N=4).
+Todos los registros parten de valores iniciales distintos de cero
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Comprime', pas�ndole una cadena de caracteres igual
+a la del ejemplo detallado en la presentaci�n del proyecto (N=4).
+Comprueba uso de PoneBitA1.
+Todos los registros parten de valores iniciales distintos de cero
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pas�ndole una cadena de longitud mayor
+de 30 caracteres y m�ltiples repeticiones de subcadenas formadas
+por caracteres cuyo c�digo ascii corresponde a valores cercanos
+al m�nimo o al m�ximo
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Comprime', pas�ndole una cadena de longitud mayor
+de 30 caracteres y m�ltiples repeticiones de subcadenas formadas
+por caracteres cuyo c�digo ascii corresponde a valores cercanos
+al m�nimo o al m�ximo. Comprueba uso de PoneBitA1
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pas�ndole una cadena de longitud mayor
+de 20 caracteres y m�ltiples repeticiones de subcadenas formadas
+por caracteres cuyo c�digo ascii corresponde a valores cercanos
+al m�nimo
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pas�ndole una cadena de longitud mayor
+de 20 caracteres y m�ltiples repeticiones de subcadenas formadas
+por caracteres cuyo c�digo ascii corresponde a valores cercanos
+al m�ximo
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pas�ndole una cadena de longitud mayor
+de 20 caracteres id�nticos
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pas�ndole una cadena de longitud mayor
+de 20 caracteres con subcadenas repetidas de 4 caracteres. Todos
+los registros parten de valores iniciales distintos de cero
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pas�ndole una cadena de longitud mayor
+de 256 caracteres que solo tiene 2 caracteres diferentes.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pas�ndole una cadena de 28 caracteres que
+admite un nivel intermedio de compresi�n: en el resultado sustituye
+cuatro secuencias de caracteres por referencias a subcadenas previas
+y hace copia literal de otros cuatro caracteres, por lo que el campo
+de bits contiene un total de 8 bits.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pas�ndole una cadena de 35 caracteres que
+admite un nivel intermedio de compresi�n: en el resultado sustituye
+tres secuencias de caracteres por referencias a subcadenas previas
+de tama�o 5, 4 y 5 caracteres. El resto de caracteres se copia
+directamente sin comprimir.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Descomprime', pas�ndole un texto comprimido que
+corresponde a una cadena de 20 caracteres que no admite
+compresi�n
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Descomprime', pas�ndole un texto comprimido que
+corresponde a una cadena de 20 caracteres que no admite
+compresi�n. Comprueba uso de LeeBit
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Descomprime', pas�ndole un texto comprimido que
+corresponde a una cadena de 32 caracteres de texto que
+admite la m�xima compresi�n
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Descomprime', pas�ndole un texto comprimido que
+corresponde a una cadena de caracteres igual a la del ejemplo
+detallado en la presentaci�n del proyecto (N=4)
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Descomprime', pas�ndole un texto comprimido que
+corresponde a una cadena de caracteres igual a la del ejemplo
+detallado en la presentaci�n del proyecto (N=4). Todos los
+registros parten de valores iniciales distintos de cero
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Descomprime', pas�ndole un texto comprimido que
+corresponde a una cadena de caracteres igual a la del ejemplo
+detallado en la presentaci�n del proyecto (N=4). Todos los
+registros parten de valores iniciales distintos de cero
+Comprueba uso de LeeBit
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Descomprime', pas�ndole un texto comprimido que
+corresponde a una cadena de longitud mayor de 30 caracteres
+y m�ltiples repeticiones de subcadenas formadas por
+caracteres cuyo c�digo ascii corresponde a valores cercanos
+al m�nimo o al m�ximo
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Descomprime', pas�ndole un texto comprimido que
+corresponde a una cadena de longitud mayor de 20 caracteres
+y m�ltiples repeticiones de subcadenas formadas por caracteres
+cuyo c�digo ascii corresponde a valores cercanos al m�nimo
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Descomprime', pas�ndole un texto comprimido que
+corresponde a una cadena de longitud mayor de 20 caracteres
+y m�ltiples repeticiones de subcadenas formadas por caracteres
+cuyo c�digo ascii corresponde a valores cercanos al m�nimo.
+Comprueba uso de LeeBit
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Descomprime', pas�ndole un texto comprimido que
+corresponde a una cadena de longitud mayor de 20 caracteres
+y m�ltiples repeticiones de subcadenas formadas por caracteres
+cuyo c�digo ascii corresponde a valores cercanos al m�ximo
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Descomprime', pas�ndole un texto comprimido que
+corresponde a una cadena de longitud mayor de 20 caracteres
+id�nticos
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Descomprime', pas�ndole un texto comprimido que
+corresponde a una cadena de longitud mayor de 20 caracteres
+con subcadenas repetidas de 4 caracteres. Todos los registros
+parten de valores iniciales distintos de cero
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Descomprime', pas�ndole un texto comprimido que
+corresponde a una cadena de longitud mayor de 256 caracteres
+que solo tiene 2 caracteres diferentes.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Descomprime', pas�ndole un texto comprimido que
+corresponde a una cadena de 28 caracteres que admite un nivel
+intermedio de compresi�n: la parte de caracteres y referencias
+est� formada por cuatro caracteres y cuatro referencias.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Descomprime', pas�ndole un texto comprimido que
+corresponde a una cadena de 35 caracteres que admite un nivel
+intermedio de compresi�n: la parte de caracteres y referencias
+est� formada por trece caracteres y tres referencias.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pas�ndole una cadena de 16 caracteres
+id�nticos.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI. Provoca error (1).
+Llama a 'Verifica', pas�ndole una cadena de 10 caracteres que no
+admite compresi�n. Provoca un resultado err�neo de Verifica.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI. Provoca error (2).
+Llama a 'Verifica', pas�ndole una cadena de 10 caracteres que no
+admite compresi�n. Provoca un resultado err�neo de Verifica.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Verifica', pas�ndole una cadena de 10 caracteres que no
+admite compresi�n
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pas�ndole una cadena de 32 caracteres que
+admite la m�xima compresi�n.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pas�ndole una cadena de 32 caracteres que
+admite la m�xima compresi�n. Tras el terminador, la cadena va
+seguida por un car�cter arbitrario.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pas�ndole una cadena de 33 caracteres que
+admite la m�xima compresi�n.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Verifica', pas�ndole una cadena de 33 caracteres que
+admite la m�xima compresi�n.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pas�ndole una cadena de 33 caracteres que
+admite la m�xima compresi�n.
+Tras el terminador, la cadena va seguida por caracteres arbitrarios.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Verifica', pas�ndole una cadena de 33 caracteres que
+admite la m�xima compresi�n.
+Tras el terminador, la cadena va seguida por caracteres arbitrarios.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pas�ndole una cadena de caracteres similar
+a la del ejemplo detallado en la presentaci�n del proyecto
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pas�ndole una cadena de caracteres similar
+a la del ejemplo detallado en la presentaci�n del proyecto. Tras
+el terminador, la cadena va seguida por caracteres arbitrarios.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI. Provoca error (1)
+Llama a 'Verifica', pas�ndole una cadena de caracteres similar
+a la del ejemplo detallado en la presentaci�n del proyecto. Tras
+el terminador, la cadena va seguida por caracteres arbitrarios.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI. Provoca error (2)
+Llama a 'Verifica', pas�ndole una cadena de caracteres similar
+a la del ejemplo detallado en la presentaci�n del proyecto. Tras
+el terminador, la cadena va seguida por caracteres arbitrarios.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Verifica', pas�ndole una cadena de caracteres similar
+a la del ejemplo detallado en la presentaci�n del proyecto. Tras
+el terminador, la cadena va seguida por caracteres arbitrarios.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pas�ndole una cadena de m�s de 260
+caracteres. Tras el terminador, la cadena va seguida por
+caracteres arbitrarios.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pas�ndole una cadena de longitud mayor
+de 20 caracteres con subcadenas repetidas de 4 caracteres.
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pas�ndole una cadena de longitud mayor
+de 20 caracteres con subcadenas repetidas de 4 caracteres. Todos
+los registros parten de valores iniciales distintos de cero
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Verifica', pas�ndole una cadena de longitud mayor
+de 20 caracteres con subcadenas repetidas de 4 caracteres. Todos
+los registros parten de valores iniciales distintos de cero
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+- 7a Llama a 'Verifica', pas�ndole una cadena de 28 caracteres que
+admite un nivel intermedio de compresi�n
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI. Provoca error (2)
+Llama a 'Verifica', pas�ndole una cadena de 28 caracteres que
+admite un nivel intermedio de compresi�n
+------------------------------------------------------------------
+Su implementaci�n falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Verifica', pas�ndole una cadena de 28 caracteres que
+admite un nivel intermedio de compresi�n
+---------------------------------
+	Casos de prueba:       89
+	Pasados: 35
+	Con error: 54
+---------------------------------
+N� de pruebas que falla por subrutina: 
+Subr LongCad 0 de 9
+Subr BuscaCar 0 de 11
+Subr CoincidenCad 0 de 7
+Subr Comprime 15 de 15
+Subr Descomprime 15 de 15
+Subr Verifica 22 de 22
+Subr PoneBitA1 2 de 5
+Subr LeeBit 0 de 5
+Fecha: 14/11/24     21:23
+

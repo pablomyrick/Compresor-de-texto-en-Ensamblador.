@@ -1,0 +1,14 @@
+{
+        "EMULADOR": "G:\\Estructura_De_Computadores\\ETSIInf\\Proyecto\\88110.exe",
+        "COMPILADOR": "G:\\Estructura_De_Computadores\\ETSIInf\\Proyecto\\88110e.exe",        
+        "CONF": "G:\\Estructura_De_Computadores\\ETSIInf\\Proyecto\\serie",
+        "CODIGO": "PoneBitA1.ens",
+	"SCALE": "1.1",
+        "STEP_INICIO": "1",
+        "SKIP_INICIO": "0",
+        "MEM_ADDR_INICIO": "256",
+        "BITMAP_TYPE": "MEMORY",
+        "BITMAP_ADDR": "256",
+        "TAG_INICIO": "ppal",
+	"TAG_BREAKPOINT": ""
+}

@@ -1,0 +1,223 @@
+Fecha: 10/12/24     21:07
+
+
+	Esta ha sido la última corrección seleccionable de su código en el periodo actual
+
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pasándole una cadena de 32 caracteres que
+admite la máxima compresión
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pasándole una cadena de longitud mayor
+de 30 caracteres y múltiples repeticiones de subcadenas formadas
+por caracteres cuyo código ascii corresponde a valores cercanos
+al mínimo o al máximo
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Comprime', pasándole una cadena de longitud mayor
+de 30 caracteres y múltiples repeticiones de subcadenas formadas
+por caracteres cuyo código ascii corresponde a valores cercanos
+al mínimo o al máximo. Comprueba uso de PoneBitA1
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pasándole una cadena de longitud mayor
+de 20 caracteres y múltiples repeticiones de subcadenas formadas
+por caracteres cuyo código ascii corresponde a valores cercanos
+al mínimo
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pasándole una cadena de longitud mayor
+de 20 caracteres y múltiples repeticiones de subcadenas formadas
+por caracteres cuyo código ascii corresponde a valores cercanos
+al máximo
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pasándole una cadena de longitud mayor
+de 20 caracteres idénticos
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pasándole una cadena de longitud mayor
+de 20 caracteres con subcadenas repetidas de 4 caracteres. Todos
+los registros parten de valores iniciales distintos de cero
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Comprime', pasándole una cadena de longitud mayor
+de 256 caracteres que solo tiene 2 caracteres diferentes.
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Descomprime', pasándole un texto comprimido que
+corresponde a una cadena de 20 caracteres que no admite
+compresión. Comprueba uso de LeeBit
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Descomprime', pasándole un texto comprimido que
+corresponde a una cadena de caracteres igual a la del ejemplo
+detallado en la presentación del proyecto (N=4). Todos los
+registros parten de valores iniciales distintos de cero
+Comprueba uso de LeeBit
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Descomprime', pasándole un texto comprimido que
+corresponde a una cadena de longitud mayor de 20 caracteres
+y múltiples repeticiones de subcadenas formadas por caracteres
+cuyo código ascii corresponde a valores cercanos al mínimo.
+Comprueba uso de LeeBit
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Descomprime', pasándole un texto comprimido que
+corresponde a una cadena de longitud mayor de 256 caracteres
+que solo tiene 2 caracteres diferentes.
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pasándole una cadena de 16 caracteres
+idénticos.
+_Error de alineamiento a palabra_ 
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI. Provoca error (1).
+Llama a 'Verifica', pasándole una cadena de 10 caracteres que no
+admite compresión. Provoca un resultado erróneo de Verifica.
+_Error de alineamiento a palabra_ 
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI. Provoca error (2).
+Llama a 'Verifica', pasándole una cadena de 10 caracteres que no
+admite compresión. Provoca un resultado erróneo de Verifica.
+_Error de alineamiento a palabra_ 
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Verifica', pasándole una cadena de 10 caracteres que no
+admite compresión
+_Error de alineamiento a palabra_ 
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pasándole una cadena de 32 caracteres que
+admite la máxima compresión.
+_Error de instrucción ilegal en dirección: 86016
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pasándole una cadena de 32 caracteres que
+admite la máxima compresión. Tras el terminador, la cadena va
+seguida por un carácter arbitrario.
+_Error de instrucción ilegal en dirección: 86016
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pasándole una cadena de 33 caracteres que
+admite la máxima compresión.
+_Error de alineamiento a palabra_ 
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Verifica', pasándole una cadena de 33 caracteres que
+admite la máxima compresión.
+_Error de alineamiento a palabra_ 
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pasándole una cadena de 33 caracteres que
+admite la máxima compresión.
+Tras el terminador, la cadena va seguida por caracteres arbitrarios.
+_Error de alineamiento a palabra_ 
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Verifica', pasándole una cadena de 33 caracteres que
+admite la máxima compresión.
+Tras el terminador, la cadena va seguida por caracteres arbitrarios.
+_Error de alineamiento a palabra_ 
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pasándole una cadena de caracteres similar
+a la del ejemplo detallado en la presentación del proyecto
+_Error de alineamiento a palabra_ 
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pasándole una cadena de caracteres similar
+a la del ejemplo detallado en la presentación del proyecto. Tras
+el terminador, la cadena va seguida por caracteres arbitrarios.
+_Error de alineamiento a palabra_ 
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI. Provoca error (1)
+Llama a 'Verifica', pasándole una cadena de caracteres similar
+a la del ejemplo detallado en la presentación del proyecto. Tras
+el terminador, la cadena va seguida por caracteres arbitrarios.
+_Error de alineamiento a palabra_ 
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI. Provoca error (2)
+Llama a 'Verifica', pasándole una cadena de caracteres similar
+a la del ejemplo detallado en la presentación del proyecto. Tras
+el terminador, la cadena va seguida por caracteres arbitrarios.
+_Error de alineamiento a palabra_ 
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Verifica', pasándole una cadena de caracteres similar
+a la del ejemplo detallado en la presentación del proyecto. Tras
+el terminador, la cadena va seguida por caracteres arbitrarios.
+_Error de alineamiento a palabra_ 
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pasándole una cadena de más de 260
+caracteres. Tras el terminador, la cadena va seguida por
+caracteres arbitrarios.
+_Error de alineamiento a palabra_ 
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pasándole una cadena de longitud mayor
+de 20 caracteres con subcadenas repetidas de 4 caracteres.
+_Error de alineamiento a palabra_ 
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- Llama a 'Verifica', pasándole una cadena de longitud mayor
+de 20 caracteres con subcadenas repetidas de 4 caracteres. Todos
+los registros parten de valores iniciales distintos de cero
+_Error de alineamiento a palabra_ 
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Verifica', pasándole una cadena de longitud mayor
+de 20 caracteres con subcadenas repetidas de 4 caracteres. Todos
+los registros parten de valores iniciales distintos de cero
+_Error de alineamiento a palabra_ 
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+- 7a Llama a 'Verifica', pasándole una cadena de 28 caracteres que
+admite un nivel intermedio de compresión
+_Error de instrucción ilegal en dirección: 86016
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI. Provoca error (2)
+Llama a 'Verifica', pasándole una cadena de 28 caracteres que
+admite un nivel intermedio de compresión
+_Error de instrucción ilegal en dirección: 0
+------------------------------------------------------------------
+Su implementación falla en una prueba en que se hace lo siguiente:
+-datsi Usa subrutinas auxiliares del DATSI.
+Llama a 'Verifica', pasándole una cadena de 28 caracteres que
+admite un nivel intermedio de compresión
+_Error de instrucción ilegal en dirección: 0
+---------------------------------
+	Casos de prueba:       89
+	Pasados: 55
+	Con error: 34
+	Alineamiento a palabra erróneo: 17
+	Instrucción ilegal: 5
+---------------------------------
+Nº de pruebas que falla por subrutina: 
+Subr LongCad 0 de 9
+Subr BuscaCar 0 de 11
+Subr CoincidenCad 0 de 7
+Subr Comprime 8 de 15
+Subr Descomprime 4 de 15
+Subr Verifica 22 de 22
+Subr PoneBitA1 0 de 5
+Subr LeeBit 0 de 5
+Fecha: 10/12/24     21:07
+
